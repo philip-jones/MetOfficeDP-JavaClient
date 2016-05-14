@@ -9,6 +9,6 @@ nohup.out
 .idea
 scratch
 target
-.DS_STORE
+*/.DS_STORE
 
 # end
