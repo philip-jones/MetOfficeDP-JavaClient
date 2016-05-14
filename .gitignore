@@ -1,0 +1,14 @@
+# Files and file name globs to ignore
+*.iml
+*.ids
+*.ipr
+*.iws
+*/target
+*.log
+nohup.out
+.idea
+scratch
+target
+.DS_STORE
+
+# end
