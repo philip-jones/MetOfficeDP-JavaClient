@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations.capabilities;
+package uk.co.padtechnology.datapoint.models.capabilities;
 
 import java.util.ArrayList;
 import java.util.List;

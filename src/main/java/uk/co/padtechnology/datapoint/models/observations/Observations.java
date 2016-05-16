@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations.observations;
+package uk.co.padtechnology.datapoint.models.observations;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;

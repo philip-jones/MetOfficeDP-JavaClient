@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations.capabilities;
+package uk.co.padtechnology.datapoint.models.capabilities;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
@@ -19,29 +19,29 @@ public class Resource {
     private String type;
     @SerializedName("TimeSteps")
     @Expose
-    private uk.co.padtechnology.datapoint.models.observations.capabilities.TimeSteps TimeSteps;
+    private uk.co.padtechnology.datapoint.models.capabilities.TimeSteps TimeSteps;
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Resource() {
     }
 
     /**
-     * 
+     *
      * @param TimeSteps
      * @param res
      * @param type
      */
-    public Resource(String res, String type, uk.co.padtechnology.datapoint.models.observations.capabilities.TimeSteps TimeSteps) {
+    public Resource(String res, String type, uk.co.padtechnology.datapoint.models.capabilities.TimeSteps TimeSteps) {
         this.res = res;
         this.type = type;
         this.TimeSteps = TimeSteps;
     }
 
     /**
-     * 
+     *
      * @return
      *     The res
      */
@@ -50,7 +50,7 @@ public class Resource {
     }
 
     /**
-     * 
+     *
      * @param res
      *     The res
      */
@@ -64,7 +64,7 @@ public class Resource {
     }
 
     /**
-     * 
+     *
      * @return
      *     The type
      */
@@ -73,7 +73,7 @@ public class Resource {
     }
 
     /**
-     * 
+     *
      * @param type
      *     The type
      */
@@ -87,24 +87,24 @@ public class Resource {
     }
 
     /**
-     * 
+     *
      * @return
      *     The TimeSteps
      */
-    public uk.co.padtechnology.datapoint.models.observations.capabilities.TimeSteps getTimeSteps() {
+    public uk.co.padtechnology.datapoint.models.capabilities.TimeSteps getTimeSteps() {
         return TimeSteps;
     }
 
     /**
-     * 
+     *
      * @param TimeSteps
      *     The TimeSteps
      */
-    public void setTimeSteps(uk.co.padtechnology.datapoint.models.observations.capabilities.TimeSteps TimeSteps) {
+    public void setTimeSteps(uk.co.padtechnology.datapoint.models.capabilities.TimeSteps TimeSteps) {
         this.TimeSteps = TimeSteps;
     }
 
-    public Resource withTimeSteps(uk.co.padtechnology.datapoint.models.observations.capabilities.TimeSteps TimeSteps) {
+    public Resource withTimeSteps(uk.co.padtechnology.datapoint.models.capabilities.TimeSteps TimeSteps) {
         this.TimeSteps = TimeSteps;
         return this;
     }

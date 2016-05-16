@@ -11,8 +11,8 @@ import org.apache.http.util.EntityUtils;
 import org.joda.time.DateTime;
 import uk.co.padtechnology.datapoint.models.gsonConverters.DateTimeConverter;
 import uk.co.padtechnology.datapoint.models.gsonConverters.WeatherTypeConverter;
-import uk.co.padtechnology.datapoint.models.observations.capabilities.Capabilities;
-import uk.co.padtechnology.datapoint.models.observations.observations.Observations;
+import uk.co.padtechnology.datapoint.models.capabilities.Capabilities;
+import uk.co.padtechnology.datapoint.models.observations.Observations;
 import uk.co.padtechnology.datapoint.models.WeatherType;
 import uk.co.padtechnology.datapoint.models.sitelist.SiteList;
 
@@ -34,6 +34,7 @@ public class DataPointClient {
     public static final Map<String, String> NO_PARAMS = Collections.emptyMap();
 
     public static final Map<String, String> RES_HOURLY = Collections.singletonMap("res","hourly");
+    public static final Map<String, String> RES_3HOURLY = Collections.singletonMap("res","3hourly");
 
     public static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(DateTime.class, new DateTimeConverter())
@@ -68,7 +69,8 @@ public class DataPointClient {
     }
 
     public Capabilities getForecastCapabilities() throws IOException {
-        final String response = getJsonResponse("val/wxfcs/all/json/capabilities", apiKey, RES_HOURLY);
+        final String response = getJsonResponse("val/wxfcs/all/json/capabilities", apiKey, RES_3HOURLY);
+        System.out.println("response = " + response);
         return GSON.fromJson(response, Capabilities.class);
     }
 

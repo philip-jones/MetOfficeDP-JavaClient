@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations.capabilities;
+package uk.co.padtechnology.datapoint.models.capabilities;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
@@ -13,42 +13,42 @@ public class Capabilities {
 
     @SerializedName("Resource")
     @Expose
-    private uk.co.padtechnology.datapoint.models.observations.capabilities.Resource Resource;
+    private uk.co.padtechnology.datapoint.models.capabilities.Resource Resource;
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Capabilities() {
     }
 
     /**
-     * 
+     *
      * @param Resource
      */
-    public Capabilities(uk.co.padtechnology.datapoint.models.observations.capabilities.Resource Resource) {
+    public Capabilities(uk.co.padtechnology.datapoint.models.capabilities.Resource Resource) {
         this.Resource = Resource;
     }
 
     /**
-     * 
+     *
      * @return
      *     The Resource
      */
-    public uk.co.padtechnology.datapoint.models.observations.capabilities.Resource getResource() {
+    public uk.co.padtechnology.datapoint.models.capabilities.Resource getResource() {
         return Resource;
     }
 
     /**
-     * 
+     *
      * @param Resource
      *     The Resource
      */
-    public void setResource(uk.co.padtechnology.datapoint.models.observations.capabilities.Resource Resource) {
+    public void setResource(uk.co.padtechnology.datapoint.models.capabilities.Resource Resource) {
         this.Resource = Resource;
     }
 
-    public Capabilities withResource(uk.co.padtechnology.datapoint.models.observations.capabilities.Resource Resource) {
+    public Capabilities withResource(uk.co.padtechnology.datapoint.models.capabilities.Resource Resource) {
         this.Resource = Resource;
         return this;
     }

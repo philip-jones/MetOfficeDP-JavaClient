@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations.observations;
+package uk.co.padtechnology.datapoint.models.observations;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
@@ -23,13 +23,13 @@ public class Param {
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Param() {
     }
 
     /**
-     * 
+     *
      * @param $
      * @param name
      * @param units
@@ -41,7 +41,7 @@ public class Param {
     }
 
     /**
-     * 
+     *
      * @return
      *     The name
      */
@@ -50,7 +50,7 @@ public class Param {
     }
 
     /**
-     * 
+     *
      * @param name
      *     The name
      */
@@ -64,7 +64,7 @@ public class Param {
     }
 
     /**
-     * 
+     *
      * @return
      *     The units
      */
@@ -73,7 +73,7 @@ public class Param {
     }
 
     /**
-     * 
+     *
      * @param units
      *     The units
      */
@@ -87,7 +87,7 @@ public class Param {
     }
 
     /**
-     * 
+     *
      * @return
      *     The $
      */
@@ -96,7 +96,7 @@ public class Param {
     }
 
     /**
-     * 
+     *
      * @param $
      *     The $
      */
