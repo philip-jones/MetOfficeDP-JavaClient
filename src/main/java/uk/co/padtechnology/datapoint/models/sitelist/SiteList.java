@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations.sitelist;
+package uk.co.padtechnology.datapoint.models.sitelist;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
@@ -13,7 +13,7 @@ public class SiteList {
 
     @SerializedName("Locations")
     @Expose
-    private uk.co.padtechnology.datapoint.models.observations.sitelist.Locations Locations;
+    private uk.co.padtechnology.datapoint.models.sitelist.Locations Locations;
 
     /**
      * No args constructor for use in serialization
@@ -26,7 +26,7 @@ public class SiteList {
      *
      * @param Locations
      */
-    public SiteList(uk.co.padtechnology.datapoint.models.observations.sitelist.Locations Locations) {
+    public SiteList(uk.co.padtechnology.datapoint.models.sitelist.Locations Locations) {
         this.Locations = Locations;
     }
 
@@ -35,7 +35,7 @@ public class SiteList {
      * @return
      *     The Locations
      */
-    public uk.co.padtechnology.datapoint.models.observations.sitelist.Locations getLocations() {
+    public uk.co.padtechnology.datapoint.models.sitelist.Locations getLocations() {
         return Locations;
     }
 
@@ -44,11 +44,11 @@ public class SiteList {
      * @param Locations
      *     The Locations
      */
-    public void setLocations(uk.co.padtechnology.datapoint.models.observations.sitelist.Locations Locations) {
+    public void setLocations(uk.co.padtechnology.datapoint.models.sitelist.Locations Locations) {
         this.Locations = Locations;
     }
 
-    public SiteList withLocations(uk.co.padtechnology.datapoint.models.observations.sitelist.Locations Locations) {
+    public SiteList withLocations(uk.co.padtechnology.datapoint.models.sitelist.Locations Locations) {
         this.Locations = Locations;
         return this;
     }

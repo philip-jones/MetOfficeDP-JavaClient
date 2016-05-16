@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations.sitelist;
+package uk.co.padtechnology.datapoint.models.sitelist;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;

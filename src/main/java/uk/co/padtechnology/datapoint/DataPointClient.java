@@ -14,7 +14,7 @@ import uk.co.padtechnology.datapoint.models.gsonConverters.WeatherTypeConverter;
 import uk.co.padtechnology.datapoint.models.observations.capabilities.Capabilities;
 import uk.co.padtechnology.datapoint.models.observations.observations.Observations;
 import uk.co.padtechnology.datapoint.models.WeatherType;
-import uk.co.padtechnology.datapoint.models.observations.sitelist.SiteList;
+import uk.co.padtechnology.datapoint.models.sitelist.SiteList;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,24 +41,37 @@ public class DataPointClient {
             .setPrettyPrinting()
             .create();
 
+    private String apiKey;
 
+    public DataPointClient(String apiKey) {
+        this.apiKey = apiKey;
+    }
 
-
-
-    public SiteList getObservationSiteList(final String apiKey) throws IOException{
+    public SiteList getObservationSiteList() throws IOException{
         final String response = getJsonResponse("val/wxobs/all/json/sitelist", apiKey, NO_PARAMS);
         return GSON.fromJson(response, SiteList.class);
     }
 
-    public Capabilities getObservationCapabilities(final String apiKey) throws IOException{
+    public Capabilities getObservationCapabilities() throws IOException{
         final String response = getJsonResponse("val/wxobs/all/json/capabilities", apiKey, RES_HOURLY);
         return GSON.fromJson(response, Capabilities.class);
     }
 
-    public Observations getObservations(final String apiKey) throws IOException {
+    public Observations getObservations() throws IOException {
         final String response = getJsonResponse("val/wxobs/all/json/all", apiKey, RES_HOURLY);
         return GSON.fromJson(response, Observations.class);
     }
+
+    public SiteList getForecastSiteList() throws IOException{
+        final String response = getJsonResponse("val/wxfcs/all/json/sitelist", apiKey, NO_PARAMS);
+        return GSON.fromJson(response, SiteList.class);
+    }
+
+    public Capabilities getForecastCapabilities() throws IOException {
+        final String response = getJsonResponse("val/wxfcs/all/json/capabilities", apiKey, RES_HOURLY);
+        return GSON.fromJson(response, Capabilities.class);
+    }
+
 
     private String getJsonResponse(final String request, final String apiKey, final Map<String, String> params) throws IOException {
         final CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -106,14 +119,18 @@ public class DataPointClient {
         }
         final String apiKey = args[0];
 
-        final DataPointClient client = new DataPointClient();
+        final DataPointClient client = new DataPointClient(apiKey);
 
         try {
-            System.out.println(client.getObservationSiteList(apiKey));
+            System.out.println(client.getObservationSiteList());
             System.out.println("------------");
-            System.out.println(client.getObservationCapabilities(apiKey));
+            System.out.println(client.getObservationCapabilities());
             System.out.println("------------");
-            System.out.println(client.getObservations(apiKey));
+            System.out.println(client.getObservations());
+            System.out.println("------------");
+            System.out.println(client.getForecastSiteList());
+            System.out.println("------------");
+            System.out.println(client.getForecastCapabilities());
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

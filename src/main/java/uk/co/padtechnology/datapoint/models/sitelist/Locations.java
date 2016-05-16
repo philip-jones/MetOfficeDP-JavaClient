@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations.sitelist;
+package uk.co.padtechnology.datapoint.models.sitelist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Locations {
 
     @SerializedName("Location")
     @Expose
-    private List<uk.co.padtechnology.datapoint.models.observations.sitelist.Location> Location = new ArrayList<uk.co.padtechnology.datapoint.models.observations.sitelist.Location>();
+    private List<uk.co.padtechnology.datapoint.models.sitelist.Location> Location = new ArrayList<uk.co.padtechnology.datapoint.models.sitelist.Location>();
 
     /**
      * No args constructor for use in serialization
@@ -28,7 +28,7 @@ public class Locations {
      *
      * @param Location
      */
-    public Locations(List<uk.co.padtechnology.datapoint.models.observations.sitelist.Location> Location) {
+    public Locations(List<uk.co.padtechnology.datapoint.models.sitelist.Location> Location) {
         this.Location = Location;
     }
 
@@ -37,7 +37,7 @@ public class Locations {
      * @return
      *     The Location
      */
-    public List<uk.co.padtechnology.datapoint.models.observations.sitelist.Location> getLocation() {
+    public List<uk.co.padtechnology.datapoint.models.sitelist.Location> getLocation() {
         return Location;
     }
 
@@ -46,11 +46,11 @@ public class Locations {
      * @param Location
      *     The Location
      */
-    public void setLocation(List<uk.co.padtechnology.datapoint.models.observations.sitelist.Location> Location) {
+    public void setLocation(List<uk.co.padtechnology.datapoint.models.sitelist.Location> Location) {
         this.Location = Location;
     }
 
-    public Locations withLocation(List<uk.co.padtechnology.datapoint.models.observations.sitelist.Location> Location) {
+    public Locations withLocation(List<uk.co.padtechnology.datapoint.models.sitelist.Location> Location) {
         this.Location = Location;
         return this;
     }
