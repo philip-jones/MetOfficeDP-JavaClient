@@ -12,7 +12,7 @@ import org.joda.time.DateTime;
 import uk.co.padtechnology.datapoint.models.gsonConverters.DateTimeConverter;
 import uk.co.padtechnology.datapoint.models.gsonConverters.WeatherTypeConverter;
 import uk.co.padtechnology.datapoint.models.capabilities.Capabilities;
-import uk.co.padtechnology.datapoint.models.observations.Observations;
+import uk.co.padtechnology.datapoint.models.siterep.ObsForecasts;
 import uk.co.padtechnology.datapoint.models.WeatherType;
 import uk.co.padtechnology.datapoint.models.sitelist.SiteList;
 
@@ -58,9 +58,9 @@ public class DataPointClient {
         return GSON.fromJson(response, Capabilities.class);
     }
 
-    public Observations getObservations() throws IOException {
+    public ObsForecasts getObservations() throws IOException {
         final String response = getJsonResponse("val/wxobs/all/json/all", apiKey, RES_HOURLY);
-        return GSON.fromJson(response, Observations.class);
+        return GSON.fromJson(response, ObsForecasts.class);
     }
 
     public SiteList getForecastSiteList() throws IOException{
@@ -72,6 +72,11 @@ public class DataPointClient {
         final String response = getJsonResponse("val/wxfcs/all/json/capabilities", apiKey, RES_3HOURLY);
         System.out.println("response = " + response);
         return GSON.fromJson(response, Capabilities.class);
+    }
+
+    public ObsForecasts getForecasts() throws IOException {
+        String response = getJsonResponse("val/wxfcs/all/json/all", apiKey, RES_3HOURLY);
+        return GSON.fromJson(response, ObsForecasts.class);
     }
 
 
@@ -133,6 +138,8 @@ public class DataPointClient {
             System.out.println(client.getForecastSiteList());
             System.out.println("------------");
             System.out.println(client.getForecastCapabilities());
+            System.out.println("------------");
+            System.out.println(client.getForecasts());
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

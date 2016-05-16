@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations;
+package uk.co.padtechnology.datapoint.models.siterep;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class Period {
     private DateTime value;
     @SerializedName("Rep")
     @Expose
-    private List<uk.co.padtechnology.datapoint.models.observations.Rep> Rep = new ArrayList<uk.co.padtechnology.datapoint.models.observations.Rep>();
+    private List<uk.co.padtechnology.datapoint.models.siterep.Rep> Rep = new ArrayList<uk.co.padtechnology.datapoint.models.siterep.Rep>();
 
     /**
      * No args constructor for use in serialization
@@ -37,7 +37,7 @@ public class Period {
      * @param type
      * @param Rep
      */
-    public Period(String type, DateTime value, List<uk.co.padtechnology.datapoint.models.observations.Rep> Rep) {
+    public Period(String type, DateTime value, List<uk.co.padtechnology.datapoint.models.siterep.Rep> Rep) {
         this.type = type;
         this.value = value;
         this.Rep = Rep;
@@ -94,7 +94,7 @@ public class Period {
      * @return
      *     The Rep
      */
-    public List<uk.co.padtechnology.datapoint.models.observations.Rep> getRep() {
+    public List<uk.co.padtechnology.datapoint.models.siterep.Rep> getRep() {
         return Rep;
     }
 
@@ -103,11 +103,11 @@ public class Period {
      * @param Rep
      *     The Rep
      */
-    public void setRep(List<uk.co.padtechnology.datapoint.models.observations.Rep> Rep) {
+    public void setRep(List<uk.co.padtechnology.datapoint.models.siterep.Rep> Rep) {
         this.Rep = Rep;
     }
 
-    public Period withRep(List<uk.co.padtechnology.datapoint.models.observations.Rep> Rep) {
+    public Period withRep(List<uk.co.padtechnology.datapoint.models.siterep.Rep> Rep) {
         this.Rep = Rep;
         return this;
     }

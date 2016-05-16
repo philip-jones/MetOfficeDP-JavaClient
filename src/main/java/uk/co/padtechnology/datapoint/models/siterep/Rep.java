@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations;
+package uk.co.padtechnology.datapoint.models.siterep;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
@@ -22,7 +22,7 @@ public class Rep {
 
     @SerializedName("V")
     @Expose
-    private Integer visibility;
+    private String visibility;
 
     @SerializedName("D")
     @Expose
@@ -52,6 +52,14 @@ public class Rep {
     @Expose
     private Float screenRelativeHumidity;
 
+    @SerializedName("U")
+    @Expose
+    private Integer maxUvIndex;
+
+    @SerializedName("Pp")
+    @Expose
+    private Integer precipitationProbability;
+
 
 
 
@@ -80,7 +88,7 @@ public class Rep {
      * @param dewPoint
      * @param screenRelativeHumidity
      */
-    public Rep(Float screenRelativeHumidity, Float temperature, Float dewPoint, Float $, String windDirection, Integer windGust, Integer pressure, Integer windSpeed, Integer visibility, WeatherType weatherType, String pressureTendancy) {
+    public Rep(Float screenRelativeHumidity, Float temperature, Float dewPoint, Float $, String windDirection, Integer windGust, Integer pressure, Integer windSpeed, String visibility, WeatherType weatherType, String pressureTendancy, Integer maxUvIndex, Integer precipitationProbability) {
         this.screenRelativeHumidity = screenRelativeHumidity;
         this.temperature = temperature;
         this.dewPoint = dewPoint;
@@ -92,6 +100,8 @@ public class Rep {
         this.visibility = visibility;
         this.weatherType = weatherType;
         this.pressureTendancy = pressureTendancy;
+        this.maxUvIndex = maxUvIndex;
+        this.precipitationProbability = precipitationProbability;
     }
 
     /**
@@ -169,6 +179,32 @@ public class Rep {
         return this;
     }
 
+    public Integer getMaxUvIndex() {
+        return maxUvIndex;
+    }
+
+    public void setMaxUvIndex(Integer maxUvIndex) {
+        this.maxUvIndex = maxUvIndex;
+    }
+
+    public Rep withMaxUvIndex(Integer maxUvIndex) {
+        this.maxUvIndex = maxUvIndex;
+        return this;
+    }
+
+    public Integer getPrecipitationProbability() {
+        return precipitationProbability;
+    }
+
+    public void setPrecipitationProbability(Integer precipitationProbability) {
+        this.precipitationProbability = precipitationProbability;
+    }
+
+    public Rep withPrecipitationProbability(Integer precipitationProbability) {
+        this.precipitationProbability = precipitationProbability;
+        return this;
+    }
+
     public Integer getPressure() {
         return pressure;
     }
@@ -195,15 +231,15 @@ public class Rep {
         return this;
     }
 
-    public Integer getVisibility() {
+    public String getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(Integer visibility) {
+    public void setVisibility(String visibility) {
         this.visibility = visibility;
     }
 
-    public Rep withV(Integer v) {
+    public Rep withV(String v) {
         this.visibility = v;
         return this;
     }

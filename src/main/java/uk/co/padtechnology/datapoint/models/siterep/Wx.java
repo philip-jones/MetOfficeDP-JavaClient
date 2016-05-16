@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations;
+package uk.co.padtechnology.datapoint.models.siterep;
 
 import java.util.ArrayList;
 import java.util.List;

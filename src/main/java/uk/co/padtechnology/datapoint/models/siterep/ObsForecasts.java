@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations;
+package uk.co.padtechnology.datapoint.models.siterep;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
@@ -9,7 +9,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 @Generated("org.jsonschema2pojo")
-public class Observations {
+public class ObsForecasts {
 
     @SerializedName("SiteRep")
     @Expose
@@ -19,14 +19,14 @@ public class Observations {
      * No args constructor for use in serialization
      *
      */
-    public Observations() {
+    public ObsForecasts() {
     }
 
     /**
      *
      * @param SiteRep
      */
-    public Observations(SiteRep SiteRep) {
+    public ObsForecasts(SiteRep SiteRep) {
         this.SiteRep = SiteRep;
     }
 
@@ -48,7 +48,7 @@ public class Observations {
         this.SiteRep = SiteRep;
     }
 
-    public Observations withSiteRep(SiteRep SiteRep) {
+    public ObsForecasts withSiteRep(SiteRep SiteRep) {
         this.SiteRep = SiteRep;
         return this;
     }
@@ -68,10 +68,10 @@ public class Observations {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Observations) == false) {
+        if ((other instanceof ObsForecasts) == false) {
             return false;
         }
-        Observations rhs = ((Observations) other);
+        ObsForecasts rhs = ((ObsForecasts) other);
         return new EqualsBuilder().append(SiteRep, rhs.SiteRep).isEquals();
     }
 

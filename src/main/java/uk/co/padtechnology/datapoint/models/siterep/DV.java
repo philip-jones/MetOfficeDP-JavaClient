@@ -1,5 +1,5 @@
 
-package uk.co.padtechnology.datapoint.models.observations;
+package uk.co.padtechnology.datapoint.models.siterep;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
