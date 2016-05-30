@@ -2,6 +2,7 @@ package uk.co.padtechnology.datapoint;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -10,16 +11,23 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.joda.time.DateTime;
 import uk.co.padtechnology.datapoint.models.gsonConverters.DateTimeConverter;
+import uk.co.padtechnology.datapoint.models.gsonConverters.PeriodAdapter;
+import uk.co.padtechnology.datapoint.models.gsonConverters.RepAdapter;
 import uk.co.padtechnology.datapoint.models.gsonConverters.WeatherTypeConverter;
 import uk.co.padtechnology.datapoint.models.capabilities.Capabilities;
 import uk.co.padtechnology.datapoint.models.siterep.ObsForecasts;
 import uk.co.padtechnology.datapoint.models.WeatherType;
 import uk.co.padtechnology.datapoint.models.sitelist.SiteList;
+import uk.co.padtechnology.datapoint.models.siterep.Period;
+import uk.co.padtechnology.datapoint.models.siterep.Rep;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,11 +44,19 @@ public class DataPointClient {
     public static final Map<String, String> RES_HOURLY = Collections.singletonMap("res","hourly");
     public static final Map<String, String> RES_3HOURLY = Collections.singletonMap("res","3hourly");
 
-    public static final Gson GSON = new GsonBuilder()
-            .registerTypeAdapter(DateTime.class, new DateTimeConverter())
-            .registerTypeAdapter(WeatherType.class, new WeatherTypeConverter())
-            .setPrettyPrinting()
-            .create();
+    public static final Gson GSON;
+
+    static{
+        final Type periodClassListType = new TypeToken<List<Period>>() {}.getType();
+        final Type repClassListType = new TypeToken<List<Rep>>() {}.getType();
+        GSON = new GsonBuilder()
+                .registerTypeAdapter(DateTime.class, new DateTimeConverter())
+                .registerTypeAdapter(WeatherType.class, new WeatherTypeConverter())
+                .registerTypeAdapter(periodClassListType, new PeriodAdapter())
+                .registerTypeAdapter(repClassListType, new RepAdapter())
+                .setPrettyPrinting()
+                .create();
+    }
 
     private String apiKey;
 
@@ -60,6 +76,17 @@ public class DataPointClient {
 
     public ObsForecasts getObservations() throws IOException {
         final String response = getJsonResponse("val/wxobs/all/json/all", apiKey, RES_HOURLY);
+        return GSON.fromJson(response, ObsForecasts.class);
+    }
+
+    public ObsForecasts getObservationsAtTimeStamp(final DateTime time) throws IOException {
+        final String timeString = DateTimeConverter.DATAPOINT_HOUR_FORMAT.print(time);
+        System.out.println("timeString = " + timeString);
+        final Map<String, String> params = new HashMap<>(2);
+        params.putAll(RES_HOURLY);
+        params.put("time",timeString);
+        final String response = getJsonResponse("val/wxobs/all/json/all", apiKey, params);
+        System.out.println("response = " + response);
         return GSON.fromJson(response, ObsForecasts.class);
     }
 
@@ -131,9 +158,20 @@ public class DataPointClient {
         try {
             System.out.println(client.getObservationSiteList());
             System.out.println("------------");
-            System.out.println(client.getObservationCapabilities());
+            final Capabilities obsCapabilities =  client.getObservationCapabilities();
+            System.out.println(obsCapabilities);
             System.out.println("------------");
-            System.out.println(client.getObservations());
+            final List<DateTime> timestamps = obsCapabilities.getResource().getTimeSteps().getTS();
+            System.out.println("A total of " + timestamps.size() + " time points to retrieve.");
+            final DateTime lastTimePoint = timestamps.get(timestamps.size()-1);
+            System.out.println("Observations for " + lastTimePoint);
+            System.out.println(client.getObservationsAtTimeStamp(lastTimePoint));
+            System.out.println("------------");
+            ObsForecasts observations = client.getObservations();
+            System.out.println(observations);
+            for(DateTime time : observations.getSiteRep().getDV().getLocation().get(0).getPeriod().get(0).getTimeStampToReps().keySet()){
+                System.out.println(time);
+            }
             System.out.println("------------");
             System.out.println(client.getForecastSiteList());
             System.out.println("------------");

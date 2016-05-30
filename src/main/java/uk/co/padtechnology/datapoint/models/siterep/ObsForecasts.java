@@ -8,6 +8,11 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Generated("org.jsonschema2pojo")
 public class ObsForecasts {
 
@@ -51,6 +56,30 @@ public class ObsForecasts {
     public ObsForecasts withSiteRep(SiteRep SiteRep) {
         this.SiteRep = SiteRep;
         return this;
+    }
+
+    /**
+     * Convenience method to return a List of Location objects embedded within the SiteRep object.
+     * @return a List of Location objects
+     */
+    public List<Location> getLocations(){
+        if (SiteRep == null) return Collections.emptyList();
+        if (SiteRep.getDV() == null) return Collections.emptyList();
+        return SiteRep.getDV().getLocation();
+    }
+
+    /**
+     * Convenience method to return a Map<Integer, Location> being a map of location Ids to Locations.
+     * Useful for quick lookup of a location in (e.g.) a database, before storing a data point.
+     * @return  a Map<Integer, Location> being a map of location Ids to Locations.
+     */
+    public Map<Integer, Location> getLocationIdToLocationMap(){
+        final List<Location> locations = getLocations();
+        final Map<Integer, Location> idToLocation = new HashMap<>(locations.size());
+        for (final Location location : locations){
+            idToLocation.put(location.getI(), location);
+        }
+        return idToLocation;
     }
 
     @Override

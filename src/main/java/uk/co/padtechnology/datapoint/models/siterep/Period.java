@@ -1,8 +1,7 @@
 
 package uk.co.padtechnology.datapoint.models.siterep;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -96,6 +95,21 @@ public class Period {
      */
     public List<uk.co.padtechnology.datapoint.models.siterep.Rep> getRep() {
         return Rep;
+    }
+
+    /**
+     * Convenience method to place the Reps into a Map<DateTime, Rep>
+     * for quick lookup of a Rep by DateTime.
+     * @return a Map<DateTime, Rep> of Rep DateTimes to Reps.
+     */
+    public Map<DateTime, Rep> getTimeStampToReps(){
+        if (Rep == null || Rep.isEmpty()) return Collections.emptyMap();
+
+        final Map<DateTime, Rep> repMap = new HashMap<>(Rep.size());
+        for (final Rep rep : Rep){
+            repMap.put(rep.getRepTimeStamp(value), rep);
+        }
+        return repMap;
     }
 
     /**

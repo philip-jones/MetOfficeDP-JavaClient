@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.joda.time.DateTime;
 import uk.co.padtechnology.datapoint.models.WeatherType;
 
 @Generated("org.jsonschema2pojo")
@@ -61,8 +62,11 @@ public class Rep {
     private Integer precipitationProbability;
 
 
-
-
+    /**
+     * The value of a Rep object ($ in the JSON representation) denotes the
+     * number of minutes after midnight UTC on the day represented by the
+     * Period object in which the Rep object is found.
+     */
     @SerializedName("$")
     @Expose
     private Float $;
@@ -291,12 +295,25 @@ public class Rep {
     }
 
     /**
-     *
-     * @return
-     *     The $
+     * @return The number of minutes after midnight UTC on the day represented by the
+     * Period object in which the Rep object is found.
      */
     public Float get$() {
         return $;
+    }
+
+    /**
+     * Returns the DataTime represented by this Rep, based upon the time stamp of the Period this is within.
+     * @param parentPeriodDateTime being midnight on the day of this Rep.
+     * @return the DataTime represented by this Rep, based upon the time stamp of the Period this is within.
+     */
+    public DateTime getRepTimeStamp(final DateTime parentPeriodDateTime) {
+        if ($ == null){
+            return parentPeriodDateTime;
+        }
+        else {
+            return parentPeriodDateTime.plusMinutes($.intValue());
+        }
     }
 
     /**

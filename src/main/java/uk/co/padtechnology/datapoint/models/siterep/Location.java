@@ -1,14 +1,14 @@
 
 package uk.co.padtechnology.datapoint.models.siterep;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.joda.time.DateTime;
 
 @Generated("org.jsonschema2pojo")
 public class Location {
@@ -249,6 +249,25 @@ public class Location {
     public Location withPeriod(List<Period> Period) {
         this.Period = Period;
         return this;
+    }
+
+    /**
+     * Convenience method to place the Reps into a Map<DateTime, Rep>
+     * for quick lookup of a Rep by DateTime.
+     * @return a Map<DateTime, Rep> of Rep DateTimes to Reps.
+     *
+     * Assumes that in the List of Periods within this Location, there will be a unique
+     * set of DateTime timepoints for all wrapped Reps.  Not sure what the semantics would
+     * be if this was not the case...
+     * @return a Map<DateTime, Rep> of Rep DateTimes to Reps.
+     */
+    public Map<DateTime, Rep> getTimeStampToReps(){
+        if (this.Period == null) return Collections.emptyMap();
+        final Map<DateTime, Rep> repMap = new HashMap<>();
+        for (final Period period : this.Period){
+            repMap.putAll(period.getTimeStampToReps());
+        }
+        return repMap;
     }
 
     @Override

@@ -19,6 +19,11 @@ public class DateTimeConverter implements JsonSerializer<DateTime>, JsonDeserial
     /*     2016-05-13Z */
     public static final DateTimeFormatter DATAPOINT_DATE_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd'Z'").withZone(DateTimeZone.UTC);
 
+    /*     2016-05-13T18Z */
+    public static final DateTimeFormatter DATAPOINT_HOUR_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd'T'H'Z'").withZone(DateTimeZone.UTC);
+
+    public static final DateTime START_EPOCH = new DateTime(0);
+
     @Override
     public JsonElement serialize(final DateTime dateTime, final Type srcType, final JsonSerializationContext context) {
         return new JsonPrimitive(DATAPOINT_TS_FORMAT.print(dateTime));
