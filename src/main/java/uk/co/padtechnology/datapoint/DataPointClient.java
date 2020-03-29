@@ -81,12 +81,10 @@ public class DataPointClient {
 
     public ObsForecasts getObservationsAtTimeStamp(final DateTime time) throws IOException {
         final String timeString = DateTimeConverter.DATAPOINT_HOUR_FORMAT.print(time);
-        System.out.println("timeString = " + timeString);
         final Map<String, String> params = new HashMap<>(2);
         params.putAll(RES_HOURLY);
         params.put("time",timeString);
         final String response = getJsonResponse("val/wxobs/all/json/all", apiKey, params);
-        System.out.println("response = " + response);
         return GSON.fromJson(response, ObsForecasts.class);
     }
 
@@ -97,7 +95,6 @@ public class DataPointClient {
 
     public Capabilities getForecastCapabilities() throws IOException {
         final String response = getJsonResponse("val/wxfcs/all/json/capabilities", apiKey, RES_3HOURLY);
-        System.out.println("response = " + response);
         return GSON.fromJson(response, Capabilities.class);
     }
 
@@ -141,7 +138,6 @@ public class DataPointClient {
                .append('=')
                .append(params.get(paramKey));
         }
-        System.out.println("url = " + url);
         return url.toString();
     }
 
@@ -163,9 +159,10 @@ public class DataPointClient {
             System.out.println("------------");
             final List<DateTime> timestamps = obsCapabilities.getResource().getTimeSteps().getTS();
             System.out.println("A total of " + timestamps.size() + " time points to retrieve.");
-            final DateTime lastTimePoint = timestamps.get(timestamps.size()-1);
-            System.out.println("Observations for " + lastTimePoint);
-            System.out.println(client.getObservationsAtTimeStamp(lastTimePoint));
+            for (DateTime timePoint : timestamps){
+                System.out.println("Observations for " + timePoint);
+                System.out.println(client.getObservationsAtTimeStamp(timePoint));
+            }
             System.out.println("------------");
             ObsForecasts observations = client.getObservations();
             System.out.println(observations);
